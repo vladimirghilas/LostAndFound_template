@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=my_password
+      - POSTGRES_DB=LostAndFoundDB
+    volumes:
+      - postgres_data1:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"  # Проброс портов (внешний:внутренний)
+
+  test-db:
+    image: postgres:15
+    restart: always
+    environment:
+      - POSTGRES_USER=test-user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=test_db
+    ports:
+      - 5434:5432 # # Проброс портов (внешний:внутренний)
+    expose:
+      - "5434"
+    volumes:
+      - test-db-data:/var/lib/postgresql/data:cached
+
+volumes:
+  postgres_data1:
+  test-db-data:
