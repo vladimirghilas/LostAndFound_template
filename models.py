@@ -1,7 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime, Text, func
-from sqlalchemy.orm import declarative_base, Mapped, mapped_column
-
-Base = declarative_base()
+from sqlalchemy.orm import Mapped, mapped_column
+from database import Base
 
 
 class LostItem(Base):
