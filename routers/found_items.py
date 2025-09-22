@@ -5,6 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from database import get_session
 from utils import get_object_or_404
+from services.storages import BaseCRUD
 
 router = APIRouter()
 
