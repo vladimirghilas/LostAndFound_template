@@ -1,4 +1,3 @@
-from typing import Any, AsyncGenerator
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker, AsyncAttrs
 from config import settings
 from sqlalchemy.orm import DeclarativeBase

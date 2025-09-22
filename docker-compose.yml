@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:15
+    image: postgres:17
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=my_password
@@ -8,10 +8,10 @@ services:
     volumes:
       - postgres_data1:/var/lib/postgresql/data
     ports:
-      - "5432:5432"  # Проброс портов (внешний:внутренний)
+      - "5433:5432"  # Проброс портов (внешний:внутренний)
 
   test-db:
-    image: postgres:15
+    image: postgres:17
     restart: always
     environment:
       - POSTGRES_USER=test-user

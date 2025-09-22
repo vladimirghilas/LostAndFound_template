@@ -75,7 +75,7 @@ async def test_delete_found_item(client, test_db, add_item):
 
 
 # negative tests
-@pytest.mark.skip(reason="Функциональность еще не реализована")
+
 @pytest.mark.asyncio
 async def test_create_found_items_incorrect_data(client):
     """
@@ -84,7 +84,8 @@ async def test_create_found_items_incorrect_data(client):
     После реализации, убрать @pytest.mark.skip
     """
     # TODO: напишите тест
-    assert False
+    response = await client.post("/found_items/", json={})
+    assert response.status_code == 422
 
 
 @pytest.mark.asyncio

@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 from models import Base
-from database import get_db
+from database import get_session
 from main import app
 from httpx import ASGITransport, AsyncClient
 
@@ -53,7 +53,7 @@ async def client(test_db):
     def override_get_db():
         yield test_db
 
-    app.dependency_overrides[get_db] = override_get_db
+    app.dependency_overrides[get_session] = override_get_db
 
     # Используем AsyncClient
     async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
