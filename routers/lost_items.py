@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from database import get_session
+from utils import get_object_or_404
 
 router = APIRouter()
 
@@ -49,6 +50,14 @@ async def update_lost_item(item_id: int, item: schemas.LostItemUpdate, session: 
     await session.refresh(db_item)
     return db_item
 
+# PUT /lost_items/1/category
+# body:
+# { "category_id": 456 }
+@router.put("/{item_id}/category", response_model=schemas.LostItem)
+async def update_lost_item_category(item_id: int, payload: schemas.LostItemCategoryUpdate, session: AsyncSession = Depends(get_session)):
+    # TODO: напишите реализацию функции
+    raise NotImplementedError("Функция еще не реализована")
+    
 
 @router.delete("/{item_id}")
 async def delete_lost_item(item_id: int, session: AsyncSession = Depends(get_session)):

@@ -25,24 +25,27 @@ class LostItemUpdate(BaseModel):
 class LostItem(LostItemBase):
     id: int
 
+class LostItemCategoryUpdate(BaseModel):
+    category_id: int
+
 # + легкий
 # + быстрый
 # - доп.запрос
 # GET: /items/{id}
-item = {
-    "name": ...,
-    "location": ...,
-    "category_id": 2 # GET: /categories/2
-}
-
-# GET: /items/{id}?include=category
-# - большая
-# - дольше
-item = {
-    "name": ...,
-    "location": ...,
-    "category": {
-        "id": 2,
-        "title": "Электроника",
-    }
-}
+# item = {
+#     "name": ...,
+#     "location": ...,
+#     "category_id": 2 # GET: /categories/2
+# }
+#
+# # GET: /items/{id}?include=category
+# # - большая
+# # - дольше
+# item = {
+#     "name": ...,
+#     "location": ...,
+#     "category": {
+#         "id": 2,
+#         "title": "Электроника",
+#     }
+# }

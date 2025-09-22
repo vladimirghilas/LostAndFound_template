@@ -53,12 +53,3 @@ async def delete_category(category_id: int, session: AsyncSession = Depends(get_
     await session.delete(category)
     await session.commit()
     return {"message": "Category deleted"}
-
-
-# PUT /lost_items/1/category
-# body:
-# { "category_id": 456 }
-#
-# PUT /lost_items_category
-# body:
-# { "category_id": 456, id: 1
