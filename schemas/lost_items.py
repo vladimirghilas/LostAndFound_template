@@ -23,3 +23,6 @@ class LostItemUpdate(BaseModel):
 
 class LostItem(LostItemBase):
     id: int
+
+class LostItemCategoryUpdate(BaseModel):
+    category_id: int | None = None

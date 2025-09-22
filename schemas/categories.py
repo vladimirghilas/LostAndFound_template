@@ -1,21 +1,18 @@
-from typing import Optional
-from pydantic import BaseModel, ConfigDict
-from .lost_items import LostItem
+from pydantic import BaseModel
+
 
 class CategoryBase(BaseModel):
     name: str
-    description: str | None = None
+    description: str = ""
 
 
 class CategoryCreate(CategoryBase):
     pass
 
+
 class CategoryUpdate(CategoryBase):
-    name: Optional[str] = None
-    description: Optional[str] = None
+    pass
+
 
 class CategoryRead(CategoryBase):
     id: int
-    lost_item: list["LostItem"] = []
-    model_config = ConfigDict(from_attributes=True)
-    
