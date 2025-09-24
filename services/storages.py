@@ -46,5 +46,4 @@ class BaseCRUD:
             return None
         await session.delete(result)
         await session.commit()
-        return result
-
+        return "ok"
