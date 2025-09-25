@@ -6,7 +6,6 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, or_
 from database import get_session
-from utils import get_object_or_404
 from services.storages import BaseCRUD
 
 router = APIRouter()

@@ -1,8 +1,6 @@
-from anyio import create_udp_socket
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
-from pydantic import BaseModel
 from sqlalchemy.orm import selectinload
 
 from database import get_session
@@ -10,8 +8,9 @@ import models
 import schemas
 from schemas import TagIds
 from services.storages import BaseCRUD
+from services.auth import get_current_user
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(get_current_user)])
 
 @router.post('/', response_model=schemas.TagRead)
 async def create_tag(tag: schemas.TagCreate, session: AsyncSession=Depends(get_session)):
@@ -44,7 +43,7 @@ async def update_tag(tag_id: int, update_tag: schemas.TagUpdate, session: AsyncS
 @router.delete('/{tag_id}', response_model=dict)
 async def delete_tag(tag_id: int, session: AsyncSession=Depends(get_session)):
     crud = BaseCRUD(models.Tag)
-    result = crud.delete(session, tag_id)
+    result = await crud.delete(session, tag_id)
     if not result:
         raise HTTPException(status_code=404, detail='Tag not found')
     return result

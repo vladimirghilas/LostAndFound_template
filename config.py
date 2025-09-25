@@ -16,6 +16,10 @@ class Settings(BaseSettings):
     # Other settings (optional)
     debug: bool = False
 
+    # JWT settings
+    jwt_secret: str = "your_strong_secret"
+    jwt_expire_minutes: int = 60
+
     @property
     def database_url(self) -> str:
         """Construct the async database URL."""
